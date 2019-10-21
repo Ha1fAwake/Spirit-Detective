@@ -2695,6 +2695,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubeColor
       objectReference: {fileID: 0}
+    - target: {fileID: 1752620806805701263, guid: 8a493881c947f11429f035b2aa94bd5d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1752620806805701259, guid: 8a493881c947f11429f035b2aa94bd5d,
         type: 3}
       propertyPath: m_LocalPosition.x
