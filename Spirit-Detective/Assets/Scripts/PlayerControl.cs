@@ -12,17 +12,11 @@ public class PlayerControl : MonoBehaviour {
     private float moveSpeed = 3f;
 
     //摇杆
+    [Range(100,300)]
+    public float pointRange = 200;
     public Image point;
     public Image ring;
     private Vector2 startPos, endPos;
-    [Range(50.0f, 500.0f)]
-    public float pointRange = 200;
-
-    //按钮查看详情（射线检测）
-    public KeyCode check = KeyCode.C;
-    public float rayDistence = 4f;
-    private float circleRadius = 0.8f;
-
 
     void Awake() {
         anim = this.GetComponent<Animator>();
@@ -32,8 +26,11 @@ public class PlayerControl : MonoBehaviour {
         var xDre = Input.GetAxisRaw("Horizontal");
         var yDre = Input.GetAxisRaw("Vertical");
         MoveAnimation(xDre, yDre);
+        Move();
+        ChangeFace();
+    }
 
-        //移动
+    private void Move() {
         if (Input.GetMouseButtonDown(0)) {
             if (Input.mousePosition.x < Screen.width / 2) {
                 BeginDrag();
@@ -47,11 +44,6 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetMouseButtonUp(0)) {
             EndDrag();
         }
-
-        //查看
-        //if (Input.GetKeyDown(check)) {
-            EmitRay();
-        //}
     }
 
     private void MoveAnimation(float xDre, float yDre) {
@@ -88,25 +80,24 @@ public class PlayerControl : MonoBehaviour {
         point.transform.localPosition = ring.transform.localPosition + Pos;
         Pos /= 150.0f;
         MoveAnimation(Pos.x, Pos.y);
-        
+
     }
 
     public void EndDrag() {
-        point.transform.localPosition =  ring.transform.localPosition;
+        point.transform.localPosition = ring.transform.localPosition;
     }
 
-    public void EmitRay() {
-        Vector3 startRayPos;
+    public void ChangeFace() {
         if (Mathf.Abs(last_ydre) > Mathf.Abs(last_xdre)) {
             if (last_ydre > 0) {
-                
+
                 GetComponent<BoxCollider2D>().offset = new Vector2(0, 0.25f);
             }
-            else {
+            else  {
                 GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.25f);
             }
         }
-        else {
+        else if (Mathf.Abs(last_ydre) < Mathf.Abs(last_xdre)) {
             if (last_xdre > 0) {
                 GetComponent<BoxCollider2D>().offset = new Vector2(0.25f, 0);
             }
@@ -114,10 +105,6 @@ public class PlayerControl : MonoBehaviour {
                 GetComponent<BoxCollider2D>().offset = new Vector2(-0.25f, 0);
             }
         }
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position+startRayPos, startRayPos, rayDistence);
-        //Debug.DrawLine(transform.position + startRayPos, transform.position + startRayPos+startRayPos.normalized*rayDistence, Color.red, 0.1f);
-        //if (hit) {
-        //    print(hit.transform.name);
-        //}
     }
+
 }
