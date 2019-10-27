@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Monologue.unity
     guid: 12cbc59607294e940b3fb610362bbc72
   - enabled: 1
+    path: Assets/Scenes/Comic.unity
+    guid: c2e702e5041b5b24c8808944859d00e0
+  - enabled: 1
     path: Assets/Scenes/Classroom1.unity
     guid: a69259f5daae84443b10dc917cb70852
   m_configObjects: {}

@@ -71,6 +71,6 @@ public class ControlText : MonoBehaviour {
     }
 
     private void LoadScene() {
-        SceneManager.LoadScene("HomePage");
+        SceneManager.LoadScene("Comic");
     }
 }
