@@ -19,6 +19,7 @@ public class HomePage : MonoBehaviour {
     //标题文字
     public Image Title;
     public Image AnyKey;
+    public Image BackGround;
 
     //任意键
     private bool IsClick;       //是否已按任意键
@@ -85,7 +86,8 @@ public class HomePage : MonoBehaviour {
     #region 选项函数
     public void OnClickPlay() {     //按下开始游戏
         ClearOption();
-        Invoke("LoadClassRoom", 0.8f);
+        BackGround.DOColor(new Color(0,0,0,1),1.5f);
+        Invoke("LoadMonologue", 1.8f);
     }
 
     public void OnClickReadData() { //按下读取存档
@@ -98,13 +100,11 @@ public class HomePage : MonoBehaviour {
 
     public void OnClickExit() {     //按下离开游戏
         ClearOption();
-        //ExitButton.transform.DOMoveX(Screen.width / 2, 0.8f).SetEase(Ease.InOutExpo);
         ExitButton.transform.DOMoveX(0, 0.8f).SetEase(Ease.InOutExpo);
     }
 
     public void OnClickCancel() {
         ShowOption();
-        //ExitButton.transform.DOMoveX(1300 + Screen.width / 2, 0.8f).SetEase(Ease.OutExpo);
         ExitButton.transform.DOMoveX(15, 0.8f).SetEase(Ease.OutExpo);
     }
     #endregion
@@ -132,32 +132,26 @@ public class HomePage : MonoBehaviour {
         Exit.GetComponent<Image>().color = Empty;
         Title.GetComponent<Image>().color = Empty;
         AnyKey.GetComponent<Image>().color = Empty;
-        //Title.transform.position = new Vector3(Screen.width / 2, 800 + Screen.height / 2, 0);
         Title.transform.position = new Vector3(0, 8, 0);
     }
 
     private void ClearOption() {    //按下选项后清空屏幕中的无关元素
-        //Title.transform.DOMoveY(800 + Screen.height / 2, 0.5f).SetEase(Ease.InBack);
-        //HomeButton.DOMoveY(-800 + Screen.height / 2, 0.5f).SetEase(Ease.InBack);
         Title.transform.DOMoveY(8, 0.5f).SetEase(Ease.InBack);
         HomeButton.DOMoveY(-8, 0.5f).SetEase(Ease.InBack);
     }
 
     private void ShowOption() {    //返回选项后还原屏幕中的主选项元素
-        // Title.transform.DOMoveY(150 + Screen.height / 2, 0.5f).SetEase(Ease.OutBack);
-        //HomeButton.DOMoveY(-300 + Screen.height / 2, 0.5f).SetEase(Ease.OutBack);
         Title.transform.DOMoveY(1.5f, 0.5f).SetEase(Ease.OutBack);
         HomeButton.DOMoveY(-3, 0.5f).SetEase(Ease.OutBack);
     }
 
     private void ShowTitle() {  //显示标题
-        //Title.transform.DOMoveY(150 + Screen.height / 2, 1.5f).SetEase(Ease.OutQuart);
         Title.transform.DOMoveY(1.5f, 1.5f).SetEase(Ease.OutQuart);
         Title.GetComponent<Image>().DOColor(White, 2.0f).SetEase(Ease.Linear);
     }
 
-    private void LoadClassRoom() {
-        SceneManager.LoadScene("Classroom1");
+    private void LoadMonologue() {
+        SceneManager.LoadScene("Monologue");
     }
     #endregion
 
