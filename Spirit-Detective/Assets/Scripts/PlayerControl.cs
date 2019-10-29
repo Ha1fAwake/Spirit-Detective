@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour {
     private float moveSpeed = 3f;
 
     //摇杆
-    [Range(100,300)]
+    [Range(100, 300)]
     public float pointRange = 200;
     public Image point;
     public Image ring;
@@ -90,19 +90,18 @@ public class PlayerControl : MonoBehaviour {
     public void ChangeFace() {
         if (Mathf.Abs(last_ydre) > Mathf.Abs(last_xdre)) {
             if (last_ydre > 0) {
-
-                GetComponent<BoxCollider2D>().offset = new Vector2(0, 0.25f);
+                GetComponent<BoxCollider2D>().offset = new Vector2(0, 0.35f);
             }
-            else  {
-                GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.25f);
+            else {
+                GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.35f);
             }
         }
         else if (Mathf.Abs(last_ydre) < Mathf.Abs(last_xdre)) {
             if (last_xdre > 0) {
-                GetComponent<BoxCollider2D>().offset = new Vector2(0.25f, 0);
+                GetComponent<BoxCollider2D>().offset = new Vector2(0.35f, 0);
             }
             else {
-                GetComponent<BoxCollider2D>().offset = new Vector2(-0.25f, 0);
+                GetComponent<BoxCollider2D>().offset = new Vector2(-0.35f, 0);
             }
         }
     }
