@@ -64,22 +64,28 @@ public class PlayerCheck : MonoBehaviour {
 
     public void OnClickCheck() {
         if (triggerEnter) {
-            if (isShowing) {
-                HideDescribe();
+            bool pickAble = TriggerObject.GetComponent<ObjectIdentity>().pickAble;
+            if (pickAble) { //是否可捡起
+                BagData.AddItem(TriggerObject.GetComponent<ObjectIdentity>().id);
+                Destroy(TriggerObject.gameObject);
             }
             else {
-                string name, describe;
-                if (TriggerObject.GetComponent<ObjectIdentity>()) {
-                    name = TriggerObject.GetComponent<ObjectIdentity>().objectName;
-                    describe = TriggerObject.GetComponent<ObjectIdentity>().describe;
+                if (isShowing) {
+                    HideDescribe();
                 }
                 else {
-                    print("该物体没有Identity脚本");
-                    return;
+                    string name, describe;
+                    if (TriggerObject.GetComponent<ObjectIdentity>()) {
+                        name = TriggerObject.GetComponent<ObjectIdentity>().objectName;
+                        describe = TriggerObject.GetComponent<ObjectIdentity>().describe;
+                    }
+                    else {
+                        print("该物体没有Identity脚本");
+                        return;
+                    }
+                    ShowDescribe(name, describe);
                 }
-                ShowDescribe(name, describe);
             }
         }
     }
-
 }

@@ -1,5 +1,6 @@
 using System;
 using ObjectName;
+using UnityEngine;
 
 namespace LudumDare.Model {
 
@@ -9,5 +10,7 @@ namespace LudumDare.Model {
         public ConstStringChooser itemName;
         public string descriptions;
         public string ItemName => itemName.StringValue;
+        public Sprite sprite;
+        public bool pickAble = false;
     }
 }

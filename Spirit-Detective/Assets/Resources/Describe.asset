@@ -17,23 +17,41 @@ MonoBehaviour:
     itemName:
       selectedIndex: 0
     descriptions: "\u8FD9\u662F\u684C\u5B50"
+    sprite: {fileID: 0}
+    pickAble: 0
   - id: 1
     itemName:
       selectedIndex: 1
     descriptions: "\u8FD9\u662F\u6905\u5B50"
+    sprite: {fileID: 0}
+    pickAble: 0
   - id: 2
     itemName:
       selectedIndex: 2
     descriptions: "\u8FD9\u662F\u9ED1\u677F"
+    sprite: {fileID: 0}
+    pickAble: 0
   - id: 3
     itemName:
       selectedIndex: 3
     descriptions: "\u8FD9\u662F\u524D\u95E8"
+    sprite: {fileID: 0}
+    pickAble: 0
   - id: 4
     itemName:
       selectedIndex: 4
     descriptions: "\u8FD9\u662F\u540E\u95E8"
+    sprite: {fileID: 0}
+    pickAble: 0
   - id: 5
     itemName:
       selectedIndex: 5
     descriptions: "\u8FD9\u662F\u8BB2\u53F0"
+    sprite: {fileID: 0}
+    pickAble: 0
+  - id: 6
+    itemName:
+      selectedIndex: 6
+    descriptions: "\u8FD9\u662F\u4E00\u4E2A\u6CA1\u5565\u7528\u7684\u5C0F\u4FE1\u5C01\u3002"
+    sprite: {fileID: 21300000, guid: 2605b4ee30c133e41a86c8f14ccc421a, type: 3}
+    pickAble: 1

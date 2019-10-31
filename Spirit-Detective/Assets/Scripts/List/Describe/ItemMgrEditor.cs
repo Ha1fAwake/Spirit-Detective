@@ -7,7 +7,7 @@ namespace LudumDare.Model.Editor {
     [CustomEditor(typeof(ItemMgr))]
     public class ItemMgrEditor : UnityEditor.Editor {
 
-        private int ListHeight = 4; //框的高度
+        private int ListHeight = 6; //框的高度
         private Vector2 pos;
         private ReorderableList itemList;
         private SerializedProperty itemListProp;
