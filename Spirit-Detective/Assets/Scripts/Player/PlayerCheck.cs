@@ -11,13 +11,19 @@ public class PlayerCheck : MonoBehaviour {
     public Text triggerName;
     public Text triggerDescribe;
     public Image backGround;
+    [Range(0.1f, 1.5f)]
+    public float effectTime = 0.5f;
+    [Range(0.5f, 4.0f)]
+    public float effectDistence = 1.5f;
 
     private Collider2D TriggerObject;
     private bool triggerEnter = false;
     private bool isShowing = false;
 
+
     void Update() {
-        InputChecking();    //输入检测
+        if (Input.GetKeyDown(check)) //输入检测
+            OnClickCheck();
     }
 
     private void OnTriggerEnter2D(Collider2D c) {
@@ -56,36 +62,43 @@ public class PlayerCheck : MonoBehaviour {
         backGround.DOColor(new Color(1, 1, 1, 0), showTime);
     }
 
-    public void InputChecking() {
-        if (Input.GetKeyDown(check)) {
-            OnClickCheck();
-        }
-    }
-
     public void OnClickCheck() {
         if (triggerEnter) {
             bool pickAble = TriggerObject.GetComponent<ObjectIdentity>().pickAble;
-            if (pickAble) { //是否可捡起
-                BagData.AddItem(TriggerObject.GetComponent<ObjectIdentity>().id);
-                Destroy(TriggerObject.gameObject);
+            if (pickAble) { //捡起物品
+                BagData.AddItem(TriggerObject.GetComponent<ObjectIdentity>().id);   //添加物品
+                PickEffect();   //捡起效果
             }
-            else {
-                if (isShowing) {
+            else {  //查看物品
+                if (isShowing) {    //收起描述
                     HideDescribe();
                 }
-                else {
+                else {  //展开描述
                     string name, describe;
-                    if (TriggerObject.GetComponent<ObjectIdentity>()) {
+                    if (TriggerObject.GetComponent<ObjectIdentity>()) { //挂了ID脚本
                         name = TriggerObject.GetComponent<ObjectIdentity>().objectName;
                         describe = TriggerObject.GetComponent<ObjectIdentity>().describe;
+                        ShowDescribe(name, describe);
                     }
-                    else {
-                        print("该物体没有Identity脚本");
-                        return;
+                    else {  //没挂脚本
+                        Debug.Log("该物体没有Identity脚本");
                     }
-                    ShowDescribe(name, describe);
                 }
             }
         }
+    }
+
+    public void PickEffect() {
+        float y = TriggerObject.transform.position.y;
+        if (TriggerObject.GetComponent<CircleCollider2D>())
+            TriggerObject.GetComponent<CircleCollider2D>().enabled = false;
+        if (TriggerObject.GetComponent<BoxCollider2D>())
+            TriggerObject.GetComponent<BoxCollider2D>().enabled = false;
+        if(TriggerObject.GetComponent<Animation>())
+            TriggerObject.GetComponent<Animation>().enabled = false;
+        TriggerObject.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        TriggerObject.transform.DOMoveY(y + effectDistence, effectTime);
+        TriggerObject.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), effectTime);
+        Destroy(TriggerObject.gameObject, effectTime);  //销毁物体
     }
 }

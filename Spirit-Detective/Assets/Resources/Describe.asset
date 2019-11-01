@@ -55,3 +55,9 @@ MonoBehaviour:
     descriptions: "\u8FD9\u662F\u4E00\u4E2A\u6CA1\u5565\u7528\u7684\u5C0F\u4FE1\u5C01\u3002"
     sprite: {fileID: 21300000, guid: 2605b4ee30c133e41a86c8f14ccc421a, type: 3}
     pickAble: 1
+  - id: 7
+    itemName:
+      selectedIndex: 7
+    descriptions: "\u4F5C\u4E1A\u5199\u4E0D\u5B8C\u4E86\u554A\u554A\u554A\u554A\u554A\u554A"
+    sprite: {fileID: 21300000, guid: 20a8af28798913e41bb178584a05fe0a, type: 3}
+    pickAble: 1

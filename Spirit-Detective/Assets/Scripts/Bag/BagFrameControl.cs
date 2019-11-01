@@ -24,7 +24,7 @@ public class BagFrameControl : MonoBehaviour {
     }
 
     public void OnClick(BaseEventData d) {
-        BagData.FramePos = pos;
+        BagData.SelectedPos = pos;
         UpdateDescription();
         Frame.DOMove(transform.position, 0.1f);
         angle += 90;
@@ -33,15 +33,15 @@ public class BagFrameControl : MonoBehaviour {
     }
 
     public void UpdateDescription() {
-        if (BagData.BagContentId[BagData.FramePos] == -1) {
+        if (BagData.SelectedItemId == -1) {
             image.sprite = nullSprite;
             name.text = null;
             describe.text = null;
         }
         else {
-            image.sprite = ItemMgr.GetItem(BagData.BagContentId[BagData.FramePos]).sprite;
-            name.text = ItemMgr.GetItem(BagData.BagContentId[BagData.FramePos]).ItemName;
-            describe.text = ItemMgr.GetItem(BagData.BagContentId[BagData.FramePos]).descriptions;
+            image.sprite = ItemMgr.GetItem(BagData.SelectedItemId).sprite;
+            name.text = ItemMgr.GetItem(BagData.SelectedItemId).ItemName;
+            describe.text = ItemMgr.GetItem(BagData.SelectedItemId).descriptions;
         }
     }
 }

@@ -34,6 +34,9 @@ public class ControlText : MonoBehaviour {
                 break;
             }
         }
+        if (contents[contents.Length - 1] != "") {
+            textLength = contents.Length;
+        }
     }
 
     void Update() {
@@ -71,6 +74,6 @@ public class ControlText : MonoBehaviour {
     }
 
     private void LoadScene() {
-        SceneManager.LoadScene("Comic");
+        SceneManager.LoadScene("Classroom1");
     }
 }

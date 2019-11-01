@@ -55,23 +55,47 @@ public class ToolsBar : MonoBehaviour {
 
     #region 其它函数
     private void BagAlpha(float a) {
+        float time = bagShowTime;
+        if (a == 0) time /= 2.0f;
+        Color color;
         foreach (Transform g in bag.transform) {
             if (g.GetComponent<Text>()) {
-                g.GetComponent<Text>().DOColor(new Color(1, 1, 1, a), bagShowTime);
+                color = g.GetComponent<Text>().color;
+                color.a = a;
+                g.GetComponent<Text>().DOColor(color, time);
             }
             else if (g.GetComponent<Image>()) {
-                g.GetComponent<Image>().DOColor(new Color(1, 1, 1, a), bagShowTime);
+                color = g.GetComponent<Image>().color;
+                color.a = a;
+                g.GetComponent<Image>().DOColor(color, time);
             }
             foreach (Transform g1 in g) {
                 if (g1.GetComponent<Text>()) {
-                    g1.GetComponent<Text>().DOColor(new Color(1, 1, 1, a), bagShowTime);
+                    color = g1.GetComponent<Text>().color;
+                    color.a = a;
+                    g1.GetComponent<Text>().DOColor(color, time);
                 }
                 else if (g1.GetComponent<Image>()) {
-                    g1.GetComponent<Image>().DOColor(new Color(1, 1, 1, a), bagShowTime);
+                    color = g1.GetComponent<Image>().color;
+                    color.a = a;
+                    g1.GetComponent<Image>().DOColor(color, time);
                 }
             }
         }
     }
+
+    public void UpdateBagView() {
+        for (int i = 0; i < 9; i++) {
+            if (BagData.BagContentId[i] != -1) {
+                item[i].sprite = ItemMgr.GetItem(BagData.BagContentId[i]).sprite;
+            }
+            else {
+                item[i].sprite = nullItem;
+            }
+        }
+    }
+
+
     #endregion
 
     #region 按钮点击事件
@@ -128,15 +152,7 @@ public class ToolsBar : MonoBehaviour {
             triangle.GetComponent<Button>().enabled = false;
             checkButton.GetComponent<Button>().enabled = false;
         }
-        //更新视觉背包
-        for (int i = 0; i < 9; i++) {
-            if (BagData.BagContentId[i] != -1) {
-                item[i].sprite = ItemMgr.GetItem(BagData.BagContentId[i]).sprite;
-            }
-            else {
-                item[i].sprite = nullItem;
-            }
-        }
+        UpdateBagView();
     }
 
     public void OnClickCloseBag() {
