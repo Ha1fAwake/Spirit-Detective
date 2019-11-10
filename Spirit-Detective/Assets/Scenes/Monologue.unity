@@ -489,6 +489,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickAble: 1
+  Lerp: 1
+  forcibleFastForward: 0
+  IsShake: 1
   text: {fileID: 1929790548}
   contents:
   - "\u8FD9\u662F\u54EA\uFF1F"
@@ -508,3 +511,4 @@ MonoBehaviour:
   beginTime: 2
   waitTime: 2
   endTime: 2
+  nextScene: Comic
