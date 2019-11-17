@@ -1,4 +1,4 @@
-﻿using LudumDare.Model;
+﻿using Item.Model;
 using ObjectName;
 using UnityEngine;
 

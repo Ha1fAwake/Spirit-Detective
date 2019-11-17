@@ -5,20 +5,23 @@ using DG.Tweening;
 public class PlayerCheck : MonoBehaviour {
 
     public KeyCode check = KeyCode.Space;
-    public bool MoveWhenCheck = false;
+    public bool MoveWhenCheck = false;  //检查物品时是否可通过离开结束check
     [Range(0, 2.0f)]
-    public float showTime = 0.3f;
+    public float showTime = 0.3f;   //物品状态信息显示出来需要的时间
+    [Header("物品信息栏")]
     public Text triggerName;
     public Text triggerDescribe;
     public Image backGround;
+
+    [Header("捡起物品")]
     [Range(0.1f, 1.5f)]
-    public float effectTime = 0.5f;
+    public float effectTime = 0.5f; //捡起物品的时间
     [Range(0.5f, 4.0f)]
-    public float effectDistence = 1.5f;
+    public float effectDistence = 1.5f; //物品被捡起的浮空距离
 
     private Collider2D TriggerObject;
-    private bool triggerEnter = false;
-    private bool isShowing = false;
+    private bool triggerEnter = false;  //是否有靠近物品
+    private bool isShowing = false; //物品信息是否在显示
 
 
     void Update() {
@@ -27,7 +30,7 @@ public class PlayerCheck : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D c) {
-        if (c.transform.tag == "DescribeAble") {    //所有可交互物体应属于此tag
+        if (c.transform.tag == "DescribeAble") {    //可被捡起或查看信息的物品的tag名
             TriggerObject = c;
             triggerEnter = true;
         }
@@ -88,7 +91,9 @@ public class PlayerCheck : MonoBehaviour {
         }
     }
 
+    //制造物体被捡起的效果
     public void PickEffect() {
+        //去除物体的属性
         float y = TriggerObject.transform.position.y;
         if (TriggerObject.GetComponent<CircleCollider2D>())
             TriggerObject.GetComponent<CircleCollider2D>().enabled = false;
@@ -96,7 +101,7 @@ public class PlayerCheck : MonoBehaviour {
             TriggerObject.GetComponent<BoxCollider2D>().enabled = false;
         if(TriggerObject.GetComponent<Animation>())
             TriggerObject.GetComponent<Animation>().enabled = false;
-        TriggerObject.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        TriggerObject.GetComponent<SpriteRenderer>().sortingOrder = 4;  //使物体不会被玩家遮挡
         TriggerObject.transform.DOMoveY(y + effectDistence, effectTime);
         TriggerObject.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), effectTime);
         Destroy(TriggerObject.gameObject, effectTime);  //销毁物体

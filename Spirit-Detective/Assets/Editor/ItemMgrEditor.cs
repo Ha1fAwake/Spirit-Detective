@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace LudumDare.Model.Editor {
+namespace Item.Model.Editor {
 
     [CustomEditor(typeof(ItemMgr))]
     public class ItemMgrEditor : UnityEditor.Editor {

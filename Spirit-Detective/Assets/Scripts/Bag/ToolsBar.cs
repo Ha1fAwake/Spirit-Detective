@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-using LudumDare.Model;
+using Item.Model;
 
 public class ToolsBar : MonoBehaviour {
 
@@ -29,7 +29,7 @@ public class ToolsBar : MonoBehaviour {
     public Sprite nullItem;
     private bool showBag = false;   //包包是否已打开
     [Range(0.05f, 1.5f)]
-    public float bagShowTime = 0.3f;    //背包出现过渡时间
+    public float bagShowTime = 0.1f;    //背包出现过渡时间
 
     [Header("【禁止操作】")]
     public bool couldOperate = false;
@@ -143,7 +143,7 @@ public class ToolsBar : MonoBehaviour {
 
     public void OnClickBag() {
         OnClickTriangle();
-        bag.transform.DOMoveY(Screen.height / 2, bagShowTime).SetEase(Ease.OutBounce);
+        bag.transform.DOMoveY(Screen.height / 2, bagShowTime);
         bag.transform.DORotate(new Vector3(0, 0, 0), bagShowTime);
         BagAlpha(1);
         if (!couldOperate) {

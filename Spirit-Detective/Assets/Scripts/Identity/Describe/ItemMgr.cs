@@ -6,7 +6,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace LudumDare.Model {
+namespace Item.Model {
 
     public class ItemMgr : ScriptableObject {
         #region Editor

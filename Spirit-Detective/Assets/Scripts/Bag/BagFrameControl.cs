@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
-using LudumDare.Model;
+using Item.Model;
 
 public class BagFrameControl : MonoBehaviour {
 

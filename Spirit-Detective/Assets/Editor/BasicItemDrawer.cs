@@ -3,7 +3,7 @@ using ReadyGamerOne.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace LudumDare.Model.Editor {
+namespace Item.Model.Editor {
 
     [CustomPropertyDrawer(typeof(BasicItem))]
     public class BasicItemDrawer : PropertyDrawer {

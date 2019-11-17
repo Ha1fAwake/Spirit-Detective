@@ -2,7 +2,7 @@ using System;
 using ObjectName;
 using UnityEngine;
 
-namespace LudumDare.Model {
+namespace Item.Model {
 
     [Serializable]
     public class BasicItem {

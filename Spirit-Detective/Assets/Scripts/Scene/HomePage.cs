@@ -92,10 +92,12 @@ public class HomePage : MonoBehaviour {
 
     public void OnClickReadData() { //按下读取存档
         ClearOption();
+        //
     }
 
     public void OnClickSetting() {  //按下设置选项
         ClearOption();
+        //
     }
 
     public void OnClickExit() {     //按下离开游戏

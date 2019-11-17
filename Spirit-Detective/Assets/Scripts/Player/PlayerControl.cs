@@ -7,9 +7,8 @@ public class PlayerControl : MonoBehaviour {
     private char faceDirection = 'f';   // 正面是f，背面是b，左面是l，右面是r
     private float last_xdre;            // 解决Blend Tree优先级问题
     private float last_ydre;
-    [SerializeField]
     [Range(0.5f, 10.0f)]
-    private float moveSpeed = 3f;
+    public float moveSpeed = 3f;
 
     //摇杆
     [Range(100, 300)]
@@ -67,6 +66,7 @@ public class PlayerControl : MonoBehaviour {
         anim.SetFloat("ydre", last_ydre);
     }
 
+    //控制摇杆
     public void BeginDrag() {    //开始拖拽摇杆
         startPos = Input.mousePosition;
     }
@@ -87,6 +87,7 @@ public class PlayerControl : MonoBehaviour {
         point.transform.localPosition = ring.transform.localPosition;
     }
 
+    //修改主角身上的box触发器的位置，便于靠近物体后的物体检测
     public void ChangeFace() {
         if (Mathf.Abs(last_ydre) > Mathf.Abs(last_xdre)) {
             if (last_ydre > 0) {
